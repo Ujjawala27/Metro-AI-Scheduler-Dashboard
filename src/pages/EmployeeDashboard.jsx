@@ -69,7 +69,7 @@ function EmployeeDashboard() {
 
   return (
     <DashboardLayout title="Employee Dashboard">
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div id="shifts" className="grid lg:grid-cols-3 gap-6">
         {/* Shift Scheduling */}
 
         <div className="bg-white p-5 rounded-xl shadow">
@@ -113,23 +113,25 @@ function EmployeeDashboard() {
             <h3 className="font-semibold">Recorded Shifts</h3>
 
             <ul className="mt-2 text-sm space-y-1">
-              {shifts.map((shift, index) => (
-                <li key={index}>
-                  Employee {shift.empId}
-                  {" → "}
-                  Train {shift.trainId}
-                  {" ("}
-                  {shift.shiftTime}
-                  {")"}
-                </li>
-              ))}
+              {shifts
+                .filter((shift) => !shift.approved)
+                .map((shift, index) => (
+                  <li key={index}>
+                    Employee {shift.empId}
+                    {" → "}
+                    Train {shift.trainId}
+                    {" ("}
+                    {shift.shiftTime}
+                    {")"}
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
 
         {/* Maintenance */}
 
-        <div className="bg-white p-5 rounded-xl shadow">
+        <div id="maintenance" className="bg-white p-5 rounded-xl shadow">
           <h2 className="text-xl font-semibold mb-4">Maintenance Reporting</h2>
 
           <form onSubmit={handleMaintenanceSubmit} className="space-y-3">
@@ -187,7 +189,7 @@ function EmployeeDashboard() {
 
         {/* Branding */}
 
-        <div className="bg-white p-5 rounded-xl shadow">
+        <div id="branding" className="bg-white p-5 rounded-xl shadow">
           <h2 className="text-xl font-semibold mb-4">Branding Updates</h2>
 
           <form onSubmit={handleBrandingSubmit} className="space-y-3">
@@ -226,14 +228,16 @@ function EmployeeDashboard() {
             <h3 className="font-semibold">Updates</h3>
 
             <ul className="mt-2 text-sm space-y-1">
-              {brandingUpdates.map((update, index) => (
-                <li key={index}>
-                  Train {update.trainId}
-                  {" - "}
-                  {update.sponsor}
-                  {update.mandatory ? " (Mandatory)" : ""}
-                </li>
-              ))}
+              {brandingUpdates
+                .filter((update) => !update.approved)
+                .map((update, index) => (
+                  <li key={index}>
+                    Train {update.trainId}
+                    {" - "}
+                    {update.sponsor}
+                    {update.mandatory ? " (Mandatory)" : ""}
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

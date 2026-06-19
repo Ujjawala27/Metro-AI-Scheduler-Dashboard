@@ -6,3 +6,81 @@
 body {
   @apply bg-gray-50 text-slate-800 font-sans;
 }
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: linear-gradient(135deg, #f8fafc, #eff6ff, #e0e7ff);
+}
+
+.dashboard-card {
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.kpi-card {
+  transition: all 0.3s ease;
+}
+
+.kpi-card:hover {
+  transform: scale(1.04);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.metro-title {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.metro-title {
+  letter-spacing: -0.5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --header-height: 150px;
+}
+
+Sidebar links with IDs for smooth scrolling #analytics,
+#deployment,
+#ranking,
+#alerts,
+#audit,
+#blocked #shifts,
+#maintenance,
+#branding,
+#stats,
+#fleet,
+#users,
+#charts,
+#audit {
+  scroll-margin-top: var(--header-height);
+}

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useTrainContext } from "../../context/TrainContext";
 import ExportButton from "../common/ExportButton";
+import { useAudit } from "../../context/AuditContext";
 
 function FleetTable() {
   const { trains, deleteTrain, updateTrain } = useTrainContext();
+
+  const { addLog } = useAudit();
 
   const [editingId, setEditingId] = useState(null);
 
@@ -20,6 +23,9 @@ function FleetTable() {
 
   const handleSave = () => {
     updateTrain(editData);
+
+    addLog(`Admin updated Train ${editData.id}`);
+
     setEditingId(null);
   };
 
@@ -198,7 +204,11 @@ function FleetTable() {
                       </button>
 
                       <button
-                        onClick={() => deleteTrain(train.id)}
+                        onClick={() => {
+                          deleteTrain(train.id);
+
+                          addLog(`Admin deleted Train ${train.id}`);
+                        }}
                         className="bg-red-600 text-white px-3 py-1 rounded"
                       >
                         Delete

@@ -29,26 +29,72 @@ const generateDemoTrains = () => {
 };
 
 export const TrainProvider = ({ children }) => {
+  // ------------------------
+  // Trains
+  // ------------------------
+
   const [trains, setTrains] = useState(() => {
     const saved = localStorage.getItem("trains");
 
     return saved ? JSON.parse(saved) : generateDemoTrains();
   });
 
-  const [shifts, setShifts] = useState([]);
+  // ------------------------
+  // Shifts
+  // ------------------------
 
-  const [maintenanceReports, setMaintenanceReports] = useState([]);
+  const [shifts, setShifts] = useState(() => {
+    const saved = localStorage.getItem("shifts");
 
-  const [brandingUpdates, setBrandingUpdates] = useState([]);
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Save trains automatically
+  // ------------------------
+  // Maintenance Reports
+  // ------------------------
+
+  const [maintenanceReports, setMaintenanceReports] = useState(() => {
+    const saved = localStorage.getItem("maintenanceReports");
+
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ------------------------
+  // Branding Updates
+  // ------------------------
+
+  const [brandingUpdates, setBrandingUpdates] = useState(() => {
+    const saved = localStorage.getItem("brandingUpdates");
+
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ------------------------
+  // Local Storage Persistence
+  // ------------------------
+
   useEffect(() => {
     localStorage.setItem("trains", JSON.stringify(trains));
   }, [trains]);
 
-  // ---------------------
+  useEffect(() => {
+    localStorage.setItem("shifts", JSON.stringify(shifts));
+  }, [shifts]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "maintenanceReports",
+      JSON.stringify(maintenanceReports)
+    );
+  }, [maintenanceReports]);
+
+  useEffect(() => {
+    localStorage.setItem("brandingUpdates", JSON.stringify(brandingUpdates));
+  }, [brandingUpdates]);
+
+  // ------------------------
   // Train Functions
-  // ---------------------
+  // ------------------------
 
   const addTrain = (newTrain) => {
     setTrains((prev) => [...prev, newTrain]);
@@ -64,20 +110,76 @@ export const TrainProvider = ({ children }) => {
     );
   };
 
-  // ---------------------
-  // Employee Functions
-  // ---------------------
+  // ------------------------
+  // Shift Functions
+  // ------------------------
 
   const addShift = (shift) => {
-    setShifts((prev) => [...prev, shift]);
+    setShifts((prev) => [
+      ...prev,
+      {
+        ...shift,
+        approved: false,
+      },
+    ]);
   };
+
+  const approveShift = (index) => {
+    setShifts((prev) =>
+      prev.map((shift, i) =>
+        i === index
+          ? {
+              ...shift,
+              approved: true,
+            }
+          : shift
+      )
+    );
+  };
+
+  // ------------------------
+  // Maintenance Functions
+  // ------------------------
 
   const addMaintenanceReport = (report) => {
-    setMaintenanceReports((prev) => [...prev, report]);
+    setMaintenanceReports((prev) => [
+      ...prev,
+      {
+        ...report,
+        timestamp: new Date().toLocaleString(),
+      },
+    ]);
   };
 
+  const resolveMaintenanceReport = (index) => {
+    setMaintenanceReports((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // ------------------------
+  // Branding Functions
+  // ------------------------
+
   const addBrandingUpdate = (update) => {
-    setBrandingUpdates((prev) => [...prev, update]);
+    setBrandingUpdates((prev) => [
+      ...prev,
+      {
+        ...update,
+        approved: false,
+      },
+    ]);
+  };
+
+  const approveBrandingUpdate = (index) => {
+    setBrandingUpdates((prev) =>
+      prev.map((update, i) =>
+        i === index
+          ? {
+              ...update,
+              approved: true,
+            }
+          : update
+      )
+    );
   };
 
   return (
@@ -90,12 +192,15 @@ export const TrainProvider = ({ children }) => {
 
         shifts,
         addShift,
+        approveShift,
 
         maintenanceReports,
         addMaintenanceReport,
+        resolveMaintenanceReport,
 
         brandingUpdates,
         addBrandingUpdate,
+        approveBrandingUpdate,
       }}
     >
       {children}

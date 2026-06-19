@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useTrainContext } from "../../context/TrainContext";
+import { useAudit } from "../../context/AuditContext";
 
 function AddTrainForm() {
   const { trains, addTrain } = useTrainContext();
-
+  const { addLog } = useAudit();
   const [mileage, setMileage] = useState("");
 
   const [status, setStatus] = useState("Available");
@@ -27,6 +28,7 @@ function AddTrainForm() {
       maintenance: status === "Maintenance",
       score: 100,
     });
+    addLog(`Admin added Train ${nextId}`);
 
     setMileage("");
     setStatus("Available");

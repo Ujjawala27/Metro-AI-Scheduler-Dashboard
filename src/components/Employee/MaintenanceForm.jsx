@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useTrainContext } from "../../context/TrainContext";
+import { useAudit } from "../../context/AuditContext";
 
 export default function MaintenanceForm() {
-  const [reports, setReports] = useState([]);
+  const { maintenanceReports, addMaintenanceReport } = useTrainContext();
+
+  const { addLog } = useAudit();
 
   const submitReport = (e) => {
     e.preventDefault();
@@ -12,9 +15,14 @@ export default function MaintenanceForm() {
       trainId: form.get("trainId"),
       issue: form.get("issue"),
       severity: form.get("severity"),
+      timestamp: new Date().toLocaleString(),
     };
 
-    setReports([...reports, report]);
+    addMaintenanceReport(report);
+
+    addLog(
+      `Employee submitted ${report.severity} severity report for Train ${report.trainId}`
+    );
 
     e.target.reset();
   };
@@ -49,11 +57,21 @@ export default function MaintenanceForm() {
         </button>
       </form>
 
-      <div className="mt-4">
-        {reports.map((r, index) => (
-          <p key={index}>
-            Train {r.trainId} - {r.issue}
-          </p>
+      <div className="mt-4 space-y-2">
+        {maintenanceReports.map((r, index) => (
+          <div key={index} className="border rounded p-2">
+            <p>
+              <strong>Train:</strong> {r.trainId}
+            </p>
+
+            <p>
+              <strong>Issue:</strong> {r.issue}
+            </p>
+
+            <p>
+              <strong>Severity:</strong> {r.severity}
+            </p>
+          </div>
         ))}
       </div>
     </div>

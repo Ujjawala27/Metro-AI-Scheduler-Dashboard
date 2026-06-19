@@ -6,19 +6,25 @@ import AlertsPanel from "../components/supervisor/AlertsPanel";
 import AIRanking from "../components/supervisor/AIRanking";
 import SimulationPanel from "../components/supervisor/SimulationPanel";
 import BrandingInsights from "../components/supervisor/BrandingInsights";
+import BlockedTrains from "../components/supervisor/BlockedTrains";
+import ShiftRequestsPanel from "../components/supervisor/ShiftRequestsPanel";
+import AuditLogPanel from "../components/common/AuditLogPanel";
 
 import { useTrainContext } from "../context/TrainContext";
 
 import { rankTrains, generateDeploymentPlan } from "../utils/aiScheduler";
 
+import { isTrainDeployable } from "../utils/deploymentRules";
+
 function SupervisorDashboard() {
   const { trains, maintenanceReports } = useTrainContext();
-
   // AI Ranking
   const rankedTrains = rankTrains(trains);
 
-  // AI Deployment Plan
-  const deploymentPlan = generateDeploymentPlan(trains, 25);
+  // Deployment Plan with Blocking Rules
+  const deploymentPlan = generateDeploymentPlan(trains, 25).filter(
+    (train) => isTrainDeployable(train, maintenanceReports).deployable
+  );
 
   // Analytics
   const availableCount = trains.filter((t) => t.status === "Available").length;
@@ -30,7 +36,7 @@ function SupervisorDashboard() {
   ).length;
 
   return (
-    <DashboardLayout title="Supervisor Dashboard">
+    <DashboardLayout id="analytics" title="Supervisor Dashboard">
       {/* Analytics Cards */}
       <div className="grid md:grid-cols-4 gap-4 mb-6">
         <AnalyticsCard
@@ -59,25 +65,38 @@ function SupervisorDashboard() {
       </div>
 
       {/* Main Section */}
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div id="deployment" className="grid lg:grid-cols-3 gap-6">
         {/* Deployment Plan */}
         <div className="lg:col-span-2">
           <DeploymentTable trains={deploymentPlan} />
+          <div id="audit">
+            <AuditLogPanel />
+          </div>
         </div>
 
-        {/* Right Side */}
+        {/* Right Panel */}
         <div className="space-y-6">
-          <AIRanking trains={rankedTrains} />
+          <div id="ranking">
+            <AIRanking trains={rankedTrains} />
+          </div>
 
-          <AlertsPanel maintenanceReports={maintenanceReports} />
+          <div id="alerts">
+            <AlertsPanel />
+          </div>
+          <ShiftRequestsPanel />
+          <div id="blocked">
+            <BlockedTrains />
+          </div>
         </div>
       </div>
 
       {/* Bottom Section */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+      <div id="simulation" className="grid lg:grid-cols-2 gap-6 mt-6">
         <SimulationPanel rankedTrains={rankedTrains} />
 
-        <BrandingInsights trains={trains} />
+        <div id="branding">
+          <BrandingInsights trains={trains} />
+        </div>
       </div>
     </DashboardLayout>
   );

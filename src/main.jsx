@@ -8,13 +8,16 @@ import "./index.css";
 import { TrainProvider } from "./context/TrainContext";
 import { UserProvider } from "./context/UserContext";
 import { AuthProvider } from "./context/AuthContext";
+import { AuditProvider } from "./context/AuditContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <UserProvider>
         <TrainProvider>
-          <App />
+          <AuditProvider>
+            <App />
+          </AuditProvider>
         </TrainProvider>
       </UserProvider>
     </AuthProvider>
