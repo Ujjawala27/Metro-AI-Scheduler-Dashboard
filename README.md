@@ -301,7 +301,7 @@ The application follows a modular React architecture featuring:
 
 ![Admin Dashboard 6](screenshots/admin-dashboard-6.png)
 
-#### Maintanence Reports
+#### Maintenance Reports
 
 ![Admin Dashboard 7](screenshots/admin-dashboard-7.png)
 
@@ -318,7 +318,7 @@ git clone https://github.com/Ujjawala27/Smart-Metro-Operations-Platform.git
 ### Navigate to Project Directory
 
 ```bash
-cd Metro-AI-Scheduler-Dashboard
+cd Smart-Metro-Operations-Platform
 ```
 
 ### Install Dependencies
@@ -343,18 +343,18 @@ http://localhost:5173
 
 ### Employee
 
-Username: employee
-Password: employee123
+- Username: employee
+- Password: employee123
 
 ### Supervisor
 
-Username: supervisor
-Password: supervisor123
+- Username: supervisor
+- Password: supervisor123
 
 ### Admin
 
-Username: admin
-Password: admin123
+- Username: admin
+- Password: admin123
 
 ---
 
@@ -398,6 +398,7 @@ The application can be deployed easily using:
 
 ### Live Demo
 
+🔗 Live Demo:
 https://smart-metro-operations-platform-x3e.vercel.app
 
 ---
