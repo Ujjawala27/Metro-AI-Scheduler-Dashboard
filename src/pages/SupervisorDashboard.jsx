@@ -1,13 +1,13 @@
 import DashboardLayout from "../components/Layout/DashboardLayout";
 
-import AnalyticsCard from "../components/supervisor/AnalyticsCard";
-import DeploymentTable from "../components/supervisor/DeploymentTable";
-import AlertsPanel from "../components/supervisor/AlertsPanel";
-import AIRanking from "../components/supervisor/AIRanking";
-import SimulationPanel from "../components/supervisor/SimulationPanel";
-import BrandingInsights from "../components/supervisor/BrandingInsights";
-import BlockedTrains from "../components/supervisor/BlockedTrains";
-import ShiftRequestsPanel from "../components/supervisor/ShiftRequestsPanel";
+import AnalyticsCard from "../components/Supervisor/AnalyticsCard";
+import DeploymentTable from "../components/Supervisor/DeploymentTable";
+import AlertsPanel from "../components/Supervisor/AlertsPanel";
+import AIRanking from "../components/Supervisor/AIRanking";
+import SimulationPanel from "../components/Supervisor/SimulationPanel";
+import BrandingInsights from "../components/Supervisor/BrandingInsights";
+import BlockedTrains from "../components/Supervisor/BlockedTrains";
+import ShiftRequestsPanel from "../components/Supervisor/ShiftRequestsPanel";
 import AuditLogPanel from "../components/common/AuditLogPanel";
 
 import { useTrainContext } from "../context/TrainContext";
@@ -36,9 +36,9 @@ function SupervisorDashboard() {
   ).length;
 
   return (
-    <DashboardLayout id="analytics" title="Supervisor Dashboard">
+    <DashboardLayout title="Supervisor Dashboard">
       {/* Analytics Cards */}
-      <div className="grid md:grid-cols-4 gap-4 mb-6">
+      <div id="analytics" className="grid md:grid-cols-4 gap-4 mb-6">
         <AnalyticsCard
           title="Total Trains"
           value={trains.length}
@@ -76,17 +76,16 @@ function SupervisorDashboard() {
 
         {/* Right Panel */}
         <div className="space-y-6">
-          <div id="ranking">
-            <AIRanking trains={rankedTrains} />
-          </div>
-
           <div id="alerts">
             <AlertsPanel />
           </div>
-          <ShiftRequestsPanel />
-          <div id="blocked">
-            <BlockedTrains />
+          <div id="ranking">
+            <AIRanking trains={rankedTrains} />
           </div>
+          <div id="shifts">
+            <ShiftRequestsPanel />
+          </div>
+          <BlockedTrains />
         </div>
       </div>
 

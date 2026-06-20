@@ -40,7 +40,9 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-slate-100">
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-700">Kochi Metro</h1>
+          <h1 className="text-3xl font-bold text-blue-700">
+            Smart Metro Operations Platform
+          </h1>
 
           <p className="text-gray-500 mt-2">Smart Service Scheduler</p>
         </div>
@@ -95,22 +97,6 @@ function Login() {
             Login
           </button>
         </form>
-
-        <div className="mt-8 border-t pt-4 text-sm text-gray-500">
-          <h3 className="font-semibold mb-2">Demo Credentials</h3>
-
-          <p>
-            <strong>Admin:</strong> admin / admin123
-          </p>
-
-          <p>
-            <strong>Supervisor:</strong> supervisor / supervisor123
-          </p>
-
-          <p>
-            <strong>Employee:</strong> employee / employee123
-          </p>
-        </div>
       </div>
     </div>
   );

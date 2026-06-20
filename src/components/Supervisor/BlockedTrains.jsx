@@ -12,7 +12,9 @@ function BlockedTrains() {
 
   return (
     <div className="bg-white shadow rounded-xl p-5">
-      <h2 className="text-xl font-semibold mb-4">Blocked Trains</h2>
+      <div id="blocked">
+        <h2 className="text-xl font-semibold mb-4">Blocked Trains</h2>
+      </div>
 
       {blockedTrains.length === 0 ? (
         <p className="text-green-600">All trains are deployable</p>

@@ -47,7 +47,7 @@ function Header({ title }) {
             <FaTrain className="text-blue-600 text-3xl" />
 
             <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-cyan-500 to-green-500 bg-clip-text text-transparent">
-              Kochi Metro AI Scheduler
+              Smart Metro Operations Platform
             </span>
           </h1>
 

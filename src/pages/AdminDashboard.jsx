@@ -11,7 +11,7 @@ import AIRecommendations from "../components/admin/AIRecommendations";
 import PredictiveMaintenance from "../components/admin/PredictiveMaintenance";
 import NotificationsCenter from "../components/admin/NotificationsCenter";
 import AuditLogPanel from "../components/common/AuditLogPanel";
-import AlertsPanel from "../components/supervisor/AlertsPanel";
+import AlertsPanel from "../components/Supervisor/AlertsPanel";
 import BrandingRequestsPanel from "../components/admin/BrandingRequestsPanel";
 
 import { useTrainContext } from "../context/TrainContext";
@@ -39,9 +39,13 @@ function AdminDashboard() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Side */}
           <div className="lg:col-span-2 space-y-6">
-            <PredictiveMaintenance />
+            <div id="maintenance">
+              <PredictiveMaintenance />
+            </div>
 
-            <AddTrainForm />
+            <div id="add-train">
+              <AddTrainForm />
+            </div>
 
             <div id="fleet">
               <FleetTable />
@@ -50,14 +54,19 @@ function AdminDashboard() {
             <div id="users">
               <UserManagement />
             </div>
-
-            <MaintenanceExport />
+            <div id="maintenance-reports">
+              <MaintenanceExport />
+            </div>
           </div>
 
           {/* Right Side */}
           <div className="space-y-6">
-            <NotificationsCenter />
-            <AIRecommendations />
+            <div id="notifications">
+              <NotificationsCenter />
+            </div>
+            <div id="recommendations">
+              <AIRecommendations />
+            </div>
             <div id="audit">
               <AuditLogPanel />
             </div>

@@ -64,23 +64,3 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
-:root {
-  --header-height: 150px;
-}
-
-Sidebar links with IDs for smooth scrolling #analytics,
-#deployment,
-#ranking,
-#alerts,
-#audit,
-#blocked #shifts,
-#maintenance,
-#branding,
-#stats,
-#fleet,
-#users,
-#charts,
-#audit {
-  scroll-margin-top: var(--header-height);
-}
