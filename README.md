@@ -398,7 +398,7 @@ The application can be deployed easily using:
 
 ### Live Demo
 
-_Add Deployment Link Here_
+https://smart-metro-operations-platform-x3e.vercel.app
 
 ---
 
