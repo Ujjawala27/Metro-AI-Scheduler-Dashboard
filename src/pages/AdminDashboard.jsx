@@ -1,18 +1,18 @@
 import DashboardLayout from "../components/Layout/DashboardLayout";
 
-import DashboardStats from "../components/admin/DashboardStats";
-import AddTrainForm from "../components/admin/AddTrainForm";
-import FleetTable from "../components/admin/FleetTable";
-import UserManagement from "../components/admin/UserManagement";
-import AnalyticsCharts from "../components/admin/AnalyticsCharts";
-import MaintenanceExport from "../components/admin/MaintenanceExport";
-import MetroAIAssistant from "../components/admin/MetroAIAssistant";
-import AIRecommendations from "../components/admin/AIRecommendations";
-import PredictiveMaintenance from "../components/admin/PredictiveMaintenance";
-import NotificationsCenter from "../components/admin/NotificationsCenter";
+import DashboardStats from "../components/Admin/DashboardStats";
+import AddTrainForm from "../components/Admin/AddTrainForm";
+import FleetTable from "../components/Admin/FleetTable";
+import UserManagement from "../components/Admin/UserManagement";
+import AnalyticsCharts from "../components/Admin/AnalyticsCharts";
+import MaintenanceExport from "../components/Admin/MaintenanceExport";
+import MetroAIAssistant from "../components/Admin/MetroAIAssistant";
+import AIRecommendations from "../components/Admin/AIRecommendations";
+import PredictiveMaintenance from "../components/Admin/PredictiveMaintenance";
+import NotificationsCenter from "../components/Admin/NotificationsCenter";
 import AuditLogPanel from "../components/common/AuditLogPanel";
 import AlertsPanel from "../components/Supervisor/AlertsPanel";
-import BrandingRequestsPanel from "../components/admin/BrandingRequestsPanel";
+import BrandingRequestsPanel from "../components/Admin/BrandingRequestsPanel";
 
 import { useTrainContext } from "../context/TrainContext";
 
